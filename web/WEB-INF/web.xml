@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>StrategyTest</servlet-name>
+        <servlet-class>source.StrategyTest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Test01</servlet-name>
+        <servlet-class>source.Test01</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DailyActionProfitShow</servlet-name>
+        <servlet-class>source.DailyActionProfitShow</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StrategyTest</servlet-name>
+        <url-pattern>/StrategyTest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Test01</servlet-name>
+        <url-pattern>/Test01</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DailyActionProfitShow</servlet-name>
+        <url-pattern>/DailyActionProfitShow</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
