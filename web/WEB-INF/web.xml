@@ -12,6 +12,10 @@
         <servlet-name>DailyActionProfitShow</servlet-name>
         <servlet-class>source.DailyActionProfitShow</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>testSublet</servlet-name>
+        <servlet-class>source.testSublet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>StrategyTest</servlet-name>
         <url-pattern>/StrategyTest</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>DailyActionProfitShow</servlet-name>
         <url-pattern>/DailyActionProfitShow</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>testSublet</servlet-name>
+        <url-pattern>/testSublet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
