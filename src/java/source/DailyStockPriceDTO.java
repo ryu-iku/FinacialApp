@@ -4,8 +4,6 @@ import java.util.Date;
 
 public class DailyStockPriceDTO {
     private String brandCode;
-    private String brandName;
-    private String market;
     private Date date;
     private int openingPrice;
     private int highPrice;
@@ -16,12 +14,6 @@ public class DailyStockPriceDTO {
     
     public String getBrandCode(){
         return brandCode;
-    }
-    public String getBrandName(){
-        return brandName;
-    }
-    public String getMarket(){
-        return market;
     }
     public Date getDate(){
         return date;
@@ -47,12 +39,6 @@ public class DailyStockPriceDTO {
     
     public void setBrandCode(String brandCode){
         this.brandCode=brandCode;
-    }
-    public void setBrandName(String brandName){
-        this.brandName=brandName;
-    }
-    public void setMarket(String market){
-        this.market=market;
     }
     public void setDate(Date date){
         this.date=date;

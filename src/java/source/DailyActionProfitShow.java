@@ -47,7 +47,6 @@ public class DailyActionProfitShow extends HttpServlet {
             ArrayList<DailyStockPriceDTO> dailyStockPriceDTOArray=DAO.getInstance().getDailyStockPriceByBrandCode(brandCode);
             
             //sort daily stock price array by date
-            //http://stackoverflow.com/questions/18441846/how-to-sort-an-arraylist-in-java
             Collections.sort(dailyStockPriceDTOArray, new Comparator<DailyStockPriceDTO>(){
                 @Override
                 public int compare(DailyStockPriceDTO dto2, DailyStockPriceDTO dto1){

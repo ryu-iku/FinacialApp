@@ -176,18 +176,53 @@ public class DAO {
             while(data.next()){
                 DailyStockPriceDTO dto=new DailyStockPriceDTO();
                 dto.setBrandCode(data.getString("brand_code"));
-                dto.setBrandName(data.getString("brand_name"));
-                dto.setMarket(data.getString("market"));
                 dto.setDate(data.getDate("date"));
-                dto.setOpeningPrice(data.getInt("opening_price"));
-                dto.setHighPrice(data.getInt("high_price"));
-                dto.setLowPrice(data.getInt("low_price"));
-                dto.setClosingPrice(data.getInt("closing_price"));
-                dto.setVolume(data.getInt("volume"));
-                dto.setTradingValue(data.getInt("trading_value"));
+                dto.setOpeningPrice(Integer.parseInt(data.getString("opening_price")));
+                dto.setHighPrice(Integer.parseInt(data.getString("high_price")));
+                dto.setLowPrice(Integer.parseInt(data.getString("low_price")));
+                dto.setClosingPrice(Integer.parseInt(data.getString("closing_price")));
+                dto.setVolume(Integer.parseInt(data.getString("volume")));
+                dto.setTradingValue(Integer.parseInt(data.getString("trading_value")));
                 
                 result.add(dto);
             }
+            data.close();
+            st.close();
+            con.close();
+            System.out.println("search completed");
+            return result;
+            
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            throw new SQLException(e);
+        }finally{
+            if(con != null){
+                con.close();
+            }
+        }
+    }
+    
+    public ArrayList<BrandAndMarketDTO> getBrandByMarket(String market) throws SQLException{
+        Connection con=null;
+        PreparedStatement st=null;
+        ResultSet data=null;
+        ArrayList<BrandAndMarketDTO> result=new ArrayList<BrandAndMarketDTO>();
+        
+        try{
+            System.out.println("start database searching!!");
+            con=DBManager.getConnection();
+            st=con.prepareStatement("SELECT * FROM brand_and_market where market=?");
+            st.setString(1,market);
+            data=st.executeQuery();
+            while(data.next()){
+                BrandAndMarketDTO dto=new BrandAndMarketDTO();
+                dto.setBrandCode(data.getString("brand_code"));
+                dto.setBrandName(data.getString("brand_name"));
+                dto.setMarket(data.getString("market"));
+                
+                result.add(dto);
+            }
+            
             data.close();
             st.close();
             con.close();
