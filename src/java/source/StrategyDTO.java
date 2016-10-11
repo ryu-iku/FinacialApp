@@ -1,6 +1,6 @@
 package source;
 
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 public class StrategyDTO {
     private int strategyId;

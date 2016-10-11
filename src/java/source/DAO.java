@@ -7,11 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
-import org.json.simple.parser.JSONParser;
-
+import org.json.JSONObject;
 import java.util.ArrayList;
 
 
@@ -20,7 +16,7 @@ public class DAO {
         return new DAO();
     }
     
-    public StrategyDTO getStrategyById(int strategyId) throws SQLException, ParseException{
+    public StrategyDTO getStrategyById(int strategyId) throws SQLException{
         Connection con=null;
         PreparedStatement st=null;
         ResultSet data=null;
@@ -31,15 +27,15 @@ public class DAO {
             System.out.println("start database searching!!");
             con=DBManager.getConnection();
             
-            st=con.prepareStatement("SELECT * FROM strategy where strategy_ID=?");
+            st=con.prepareStatement("SELECT * FROM strategy where strategy_id=?");
             st.setInt(1, strategyId);
             
             data=st.executeQuery();
             while(data.next()){
-                JSONParser parser=new JSONParser();
-                Object obj=parser.parse(data.getString("strategy"));
-                JSONArray array=(JSONArray)obj;
-                JSONObject json=(JSONObject)array.get(0);
+//                JSONParser parser=new JSONParser();
+//                Object obj=parser.parse(data.getString("strategy_json"));
+//                JSONArray array=(JSONArray)obj;
+                JSONObject json=new JSONObject(data.getString("strategy_json"));
                 result.setStrategyJson(json);
                 result.setStrategyId(strategyId);
             }
@@ -60,10 +56,9 @@ public class DAO {
         }
     }
     
-    public void setStrategy(StrategyDTO strategyDTO) throws SQLException, ParseException{
+    public void setStrategy(StrategyDTO strategyDTO) throws SQLException{
         Connection con=null;
         PreparedStatement st=null;
-        ResultSet data=null;
         
         try{
             System.out.println("start database inserting!!");
@@ -89,12 +84,11 @@ public class DAO {
     public void setDailyActionProfit(DailyActionProfitDTO dailyActionProfitDTO) throws SQLException{
         Connection con=null;
         PreparedStatement st=null;
-        ResultSet data=null;
         
         try{
             System.out.println("start database inserting!!");
             con=DBManager.getConnection();
-            st=con.prepareStatement("INSERT INTO daily_action_profit (date, action, profit, brand_code, strategy_id) VALUES(?,?,?,?)");
+            st=con.prepareStatement("INSERT INTO daily_action_profit (date, action, profit, brand_code, strategy_id) VALUES(?,?,?,?,?)");
             java.sql.Date sqlDate=new java.sql.Date(dailyActionProfitDTO.getDate().getTime());
             st.setDate(1, sqlDate);
             st.setString(2, dailyActionProfitDTO.getAction());
@@ -102,9 +96,8 @@ public class DAO {
             st.setString(4, dailyActionProfitDTO.getBrandCode());
             st.setInt(5,dailyActionProfitDTO.getStrategyId());
             
-            data=st.executeQuery();
+            st.executeUpdate();
             
-            data.close();
             st.close();
             con.close();
             System.out.println("completed");
