@@ -1,4 +1,4 @@
-package source;
+package storage;
 
 import java.util.Date;
 
@@ -9,8 +9,8 @@ public class DailyStockPriceDTO {
     private int highPrice;
     private int lowPrice;
     private int closingPrice;
-    private int volume;
-    private int tradingValue;
+    private double volume;
+    private double tradingValue;
     
     public String getBrandCode(){
         return brandCode;
@@ -30,10 +30,10 @@ public class DailyStockPriceDTO {
     public int getClosingPrice(){
         return closingPrice;
     }
-    public int getVolume(){
+    public double getVolume(){
         return volume;
     }
-    public int getTradingValue(){
+    public double getTradingValue(){
         return tradingValue;
     }
     
@@ -55,10 +55,10 @@ public class DailyStockPriceDTO {
     public void setClosingPrice(int closingPrice){
         this.closingPrice=closingPrice;
     }
-    public void setVolume(int volume){
+    public void setVolume(double volume){
         this.volume=volume;
     }
-    public void setTradingValue(int tradingValue){
+    public void setTradingValue(double tradingValue){
         this.tradingValue=tradingValue;
     }
 }

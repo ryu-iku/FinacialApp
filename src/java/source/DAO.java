@@ -1,5 +1,6 @@
 package source;
 
+import storage.*;
 import base.DBManager;
 
 import java.sql.PreparedStatement;
@@ -24,7 +25,7 @@ public class DAO {
         StrategyDTO result=new StrategyDTO();
         
         try{
-            System.out.println("start database searching!!");
+            System.out.println("getStrategyById start database connecting!!");
             con=DBManager.getConnection();
             
             st=con.prepareStatement("SELECT * FROM strategy where strategy_id=?");
@@ -32,9 +33,6 @@ public class DAO {
             
             data=st.executeQuery();
             while(data.next()){
-//                JSONParser parser=new JSONParser();
-//                Object obj=parser.parse(data.getString("strategy_json"));
-//                JSONArray array=(JSONArray)obj;
                 JSONObject json=new JSONObject(data.getString("strategy_json"));
                 result.setStrategyJson(json);
                 result.setStrategyId(strategyId);
@@ -43,7 +41,7 @@ public class DAO {
             data.close();
             st.close();
             con.close();
-            System.out.println("search completed");
+            System.out.println("getStrategyById completed");
             return result;
             
         }catch(SQLException e){
@@ -61,7 +59,7 @@ public class DAO {
         PreparedStatement st=null;
         
         try{
-            System.out.println("start database inserting!!");
+            System.out.println("setStrategy start database connecting!!");
             con=DBManager.getConnection();
             st=con.prepareStatement("INSERT INTO strategy (strategy_id, strategy_json) VALUES(?,?)");
             st.setInt(1, strategyDTO.getStrategyId());
@@ -69,7 +67,7 @@ public class DAO {
             
             st.close();
             con.close();
-            System.out.println("completed!");
+            System.out.println("setStrategy completed!");
             
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -86,7 +84,7 @@ public class DAO {
         PreparedStatement st=null;
         
         try{
-            System.out.println("start database inserting!!");
+            System.out.println("setDailyActionProfit start database connecting!!");
             con=DBManager.getConnection();
             st=con.prepareStatement("INSERT INTO daily_action_profit (date, action, profit, brand_code, strategy_id) VALUES(?,?,?,?,?)");
             java.sql.Date sqlDate=new java.sql.Date(dailyActionProfitDTO.getDate().getTime());
@@ -100,7 +98,7 @@ public class DAO {
             
             st.close();
             con.close();
-            System.out.println("completed");
+            System.out.println("setDailyActionProfit completed");
             
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -121,7 +119,7 @@ public class DAO {
         ArrayList<DailyActionProfitDTO> result=new ArrayList<DailyActionProfitDTO>();
         
         try{
-            System.out.println("start database searching!!");
+            System.out.println("getDailyActionProfitByStrategyId start database connecting!!");
             con=DBManager.getConnection();
             st=con.prepareStatement("SELECT * FROM daily_action_profit where strategyId=?");
             st.setInt(1, strategyId);
@@ -139,7 +137,7 @@ public class DAO {
             data.close();
             st.close();
             con.close();
-            System.out.println("search completed");
+            System.out.println("getDailyActionProfitByStrategyId completed");
             return result;
             
         }catch(SQLException e){
@@ -161,7 +159,7 @@ public class DAO {
         ArrayList<DailyStockPriceDTO> result=new ArrayList<DailyStockPriceDTO>();
         
         try{
-            System.out.println("start database searching!!");
+            System.out.println("getDailyStockPriceByBrandCode start database connecting!!");
             con=DBManager.getConnection();
             st=con.prepareStatement("SELECT * FROM daily_stock_price where brand_code=?");
             st.setString(1, brandCode);
@@ -170,19 +168,21 @@ public class DAO {
                 DailyStockPriceDTO dto=new DailyStockPriceDTO();
                 dto.setBrandCode(data.getString("brand_code"));
                 dto.setDate(data.getDate("date"));
-                dto.setOpeningPrice(Integer.parseInt(data.getString("opening_price")));
-                dto.setHighPrice(Integer.parseInt(data.getString("high_price")));
-                dto.setLowPrice(Integer.parseInt(data.getString("low_price")));
-                dto.setClosingPrice(Integer.parseInt(data.getString("closing_price")));
-                dto.setVolume(Integer.parseInt(data.getString("volume")));
-                dto.setTradingValue(Integer.parseInt(data.getString("trading_value")));
+                System.out.println(data.getDate("date"));
+                System.out.println((int)Double.parseDouble(data.getString("opening_price")));
+                dto.setOpeningPrice((int)Double.parseDouble(data.getString("opening_price")));
+                dto.setHighPrice((int)Double.parseDouble(data.getString("high_price")));
+                dto.setLowPrice((int)Double.parseDouble(data.getString("low_price")));
+                dto.setClosingPrice((int)Double.parseDouble(data.getString("closing_price")));
+                dto.setVolume(Double.parseDouble(data.getString("volume")));
+                dto.setTradingValue(Double.parseDouble(data.getString("trading_value")));
                 
                 result.add(dto);
             }
             data.close();
             st.close();
             con.close();
-            System.out.println("search completed");
+        System.out.println("getDailyStockPriceByBrandCode completed");
             return result;
             
         }catch(SQLException e){
@@ -202,9 +202,9 @@ public class DAO {
         ArrayList<BrandAndMarketDTO> result=new ArrayList<BrandAndMarketDTO>();
         
         try{
-            System.out.println("start database searching!!");
+            System.out.println("getBrandByMarket start database connecting!! the market you chose is "+market);
             con=DBManager.getConnection();
-            st=con.prepareStatement("SELECT * FROM brand_and_market where market=?");
+            st=con.prepareStatement("SELECT * FROM brand_and_market WHERE BINARY market LIKE ?");
             st.setString(1,market);
             data=st.executeQuery();
             while(data.next()){
@@ -219,7 +219,7 @@ public class DAO {
             data.close();
             st.close();
             con.close();
-            System.out.println("search completed");
+            System.out.println("getBrandByMarket completed");
             return result;
             
         }catch(SQLException e){
@@ -231,4 +231,5 @@ public class DAO {
             }
         }
     }
+    
 }

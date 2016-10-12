@@ -1,6 +1,7 @@
 package source;
 
 //import base.DBManager;--make base class in src folder if neccessary.
+import storage.DailyActionProfitDTO;
 import base.DBManager;
 import java.util.ArrayList;
 

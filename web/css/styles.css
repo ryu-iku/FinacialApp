@@ -1,0 +1,17 @@
+body {
+  padding-bottom: 2rem;
+}
+
+.jumbotron {
+    background-image: url("../img/cute01_bw.jpg");
+    background-position: center,center;
+    background-size: cover;
+    
+    color: white;
+    min-height: 500px;
+    /*filter: blur(5px);*/
+}
+
+.container{
+    margin-top:100px;
+}
