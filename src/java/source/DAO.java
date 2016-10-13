@@ -54,16 +54,15 @@ public class DAO {
         }
     }
     
-    public void setStrategy(StrategyDTO strategyDTO) throws SQLException{
+    public void setStrategyWithJson(JSONObject strategyJson) throws SQLException{
         Connection con=null;
         PreparedStatement st=null;
         
         try{
             System.out.println("setStrategy start database connecting!!");
             con=DBManager.getConnection();
-            st=con.prepareStatement("INSERT INTO strategy (strategy_id, strategy_json) VALUES(?,?)");
-            st.setInt(1, strategyDTO.getStrategyId());
-            st.setString(2, strategyDTO.getStrategyJson().toString());
+            st=con.prepareStatement("INSERT INTO strategy (strategy_json) VALUES(?)");
+            st.setString(1, strategyJson.toString());
             
             st.close();
             con.close();
@@ -121,7 +120,7 @@ public class DAO {
         try{
             System.out.println("getDailyActionProfitByStrategyId start database connecting!!");
             con=DBManager.getConnection();
-            st=con.prepareStatement("SELECT * FROM daily_action_profit where strategyId=?");
+            st=con.prepareStatement("SELECT * FROM daily_action_profit where strategy_id=?");
             st.setInt(1, strategyId);
             
             data=st.executeQuery();

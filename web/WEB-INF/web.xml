@@ -16,6 +16,14 @@
         <servlet-name>testSublet</servlet-name>
         <servlet-class>source.testSublet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowSimulationResult</servlet-name>
+        <servlet-class>source.ShowSimulationResult</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmStrategy</servlet-name>
+        <servlet-class>source.ConfirmStrategy</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>StrategyTest</servlet-name>
         <url-pattern>/StrategyTest</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>testSublet</servlet-name>
         <url-pattern>/testSublet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowSimulationResult</servlet-name>
+        <url-pattern>/ShowSimulationResult</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmStrategy</servlet-name>
+        <url-pattern>/ConfirmStrategy</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

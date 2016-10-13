@@ -23,7 +23,7 @@
         </nav>
         
         <h1>scenerio completed by now</h1>
-        <h2><a href src="condition_set.jsp">change this part</a></h2>
-        <h1>no problem! <a href="test_result.jsp">Just run a test!</a></h1>
+        <h2><a href src="make_strategy.jsp">rewrite</a></h2>
+        <h1>no problem? <a href="ShowSimulationResult">Submit for a simulation.</a></h1>
     </body>
 </html>

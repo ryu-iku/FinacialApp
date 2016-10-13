@@ -23,7 +23,7 @@
         </nav>
         
         <div class="jumbotron">
-            <div class="container">
+            <div class="container" id="top-text">
                 <h1 class="display-3"><a href="./make_strategy.jsp">Make strategy</a></h1>
                 <p>Make your own strategy and check out the profit!</p>
                 <p><a class="btn btn-primary btn-lg" href="./make_strategy.jsp" role="button">Make strategy now &raquo;</a></p>

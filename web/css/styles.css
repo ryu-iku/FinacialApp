@@ -12,6 +12,6 @@ body {
     /*filter: blur(5px);*/
 }
 
-.container{
+#top-text {
     margin-top:100px;
 }

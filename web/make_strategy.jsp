@@ -21,9 +21,42 @@
               </li>
             </ul>
         </nav>
-        <h1>Choose conditions and actions, and make your strategy!</h1>
         
-        <h2><a href="./condition_set.jsp">Choose a condition</a></h2>
+        <div class="container">
+            <h1>Choose <strong>conditions</strong> of holding and selling!</h1>
+
+            <p>(Based on daily price change:)</p>
+            
+            <div>
+                <h2>price change rate for holding</h2>
+                <div class="col-xs-6">
+                    <label for="holding_max">Max:</label>
+                    <input type="text" class="form-control" id="holding_max"  name="holding_max" value="1" placeholder="Enter price increasing rate">
+                </div>
+                <div class="col-xs-6">
+                    <label for="holding_min">Min:</label>
+                    <input type="text" class="form-control" id="holding_min" name="holding_min" placeholder="Enter price increasing rate">
+                </div>
+            </div>
+
+            <div>
+                <h2>price change rate for selling</h2>
+                <div class="col-xs-6">
+                    <label for="selling_max">Max:</label>
+                    <input type="text" class="form-control" id="selling_max" name="selling_max" placeholder="Enter price increasing rate">
+                </div>
+                <div class="col-xs-6">
+                    <label for="selling_min">Min:</label>
+                    <input type="text" class="form-control" id="selling_min" name="selling_min" placeholder="Enter price increasing rate">
+                </div>
+            </div>
+            
+            <h2><a href="ConfirmStrategy">Finish!</a></h2>
+
+        </div>
+        
+
+        
         
     </body>
 </html>
